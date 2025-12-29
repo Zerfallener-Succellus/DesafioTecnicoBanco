@@ -15,7 +15,10 @@ O objetivo é expor uma API que consolida dados vindos de duas bases de dados di
 
 ## Arquitetura e Decisões Técnicas
 
-Como o requisito pedia bases distintas, Configurei dois `DataSource` separados (`accountdb` e `balancedb`). Isso garante que não existe integridade referencial a nivel de banco de dados, forçando a integridade ser tratada na aplicação.
+Como é um projeto pequeno optei por uma arquitetura Package by Feature . Ela oferece o desacoplamento necessário para o cenário de reorganização arquitetural proposto. Como o requisito pedia bases distintas, Configurei dois `DataSource` separados (`accountdb` e `balancedb`). Isso garante que não existe integridade referencial a nivel de banco de dados, forçando a integridade ser tratada na aplicação.
+
+A arquitetura seria assim caso utilizasse serviços AWS:
+![Diagrama de Arquitetura AWS](media/diagrama.png)
 
 ### Estrutura de Pastas
 Tudo relacionado a agregação está no pacote `feature/accountaggregator`. Os dominios puros ficam em `domain`. Isso facilita caso precisemos extrair essa feature para um serviço separado no futuro.
@@ -79,4 +82,4 @@ Lembre-se de alterar a JDBC URL para conectar na base certa:
 
 Qualquer problema na execução verificar as variaveis de ambiente do java ou a versão do maven.
 
-```
+
